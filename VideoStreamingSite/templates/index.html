@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %}{{title}}{% endblock title_block %}
+
+{% block body_block %}
+{% if search %}
+<center>
+{% for video in search_result %}
+    <a href="{% url 'app_video:video' pk=video.pk %}" class='text-decoration-none'>
+        <div class="mt-5 fs-3 fw-b">User: {{video.user}}</div><br>
+        <div class="">{{video.video_link|safe}}</div>
+        <div class="fw-bold fs-4">{{video.video_title}}</div>
+        <div class="fw-bold mb-3">Category: {{video.video_category}}</div>
+        <div>upload date: {{video.video_upload_date}}</div>
+    </a>
+    <hr>
+{% endfor %}
+</center>
+{% else %}
+<center>
+    <div class='col-md-6'>
+        <h1 class="text-center my-5 display-4">All videos from all users</h1>
+        {% for video in video_list %}
+        <a href="{% url 'app_video:video' pk=video.pk %}" class='text-decoration-none'>
+            <div class="mt-5 fs-3 fw-b">User: {{video.user}}</div><br>
+            <div class="">{{video.video_link|safe}}</div>
+            <div class="fw-bold fs-4">{{video.video_title}}</div>
+            <div class="fw-bold mb-3">Category: {{video.video_category}}</div>
+            <div>upload date: {{video.video_upload_date}}</div>
+        </a>
+        <hr>
+        {% endfor %}
+    </div>
+</center>
+{% endif %}
+{% endblock body_block %}

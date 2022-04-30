@@ -1,0 +1,39 @@
+.myBackground {
+  background-color: rgb(27, 26, 36);
+}
+
+h1 {
+  color: red;
+}
+
+.faIcons {
+  font-size: 54px;
+  display: inline-block;
+  transition: transform .2s;
+}
+
+.faIcons:hover {
+  transform: scale(1.2);
+}
+
+body{
+  background-image: url("https://img.freepik.com/free-vector/white-elegant-texture-background-style_23-2148432200.jpg?w=2000");
+  background-size: cover;
+}
+
+p{
+  word-wrap: break-word;
+}
+
+/* table, tr, td{
+    border: 2px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+  } */
+  .unselectable{
+    user-select: none;
+  }
+
+  #brand{
+    width: 50px;
+  }
