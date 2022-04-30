@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.db.models import Q
 
 # Create your views here.
 def registrationView(request):
@@ -47,7 +48,7 @@ def homepageView(request):
 
     if request.method == "GET":
         search = request.GET.get("search", '')
-        search_result = Video.objects.filter(video_title__icontains=search)
+        search_result = Video.objects.filter(Q(video_title__icontains=search) | Q(video_category__icontains=search))
         # search_result2 = User.objects.filter( first_name__icontains=search)
         # search_result3 = User.objects.filter( last_name__icontains=search)
         #search_result2 = UserProfile.objects.filter( full_name__icontains=search)
