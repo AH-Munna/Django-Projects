@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %}{{title}}{% endblock title_block %}
+
+{% block body_block %}
+<center>
+    <div class="col-md-6 shadow p-5 my-5">
+        <h1 class="display-4 text-info text-center py-1 my-5">Create a Quiz for your Students</h1>
+        <form method="POST">
+            {{ form|crispy }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-primary py-1 px-5 my-2">Create</button>
+        </form>
+    </div>
+</center>
+{% endblock body_block %}

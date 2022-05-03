@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load myFilters %}
+{% block title_block %}{{title}}{% endblock title_block %}
+
+{% block body_block %}
+<a href="#" class="text-center mb-5 d-felx float-end text-decoration-none text-info display-6">{{user.username}}({{user.account_profile.account_type}})</a>
+
+<h1 class='text-center display-4 text-info py-5 my-5'>All the Articles list</h1>
+{% for article in article_list %}
+    <h3>{{ article.article_title }}</h3>
+    created: {{ article.article_published_date }}  updated: {{ article.article_update_time }}
+    <br>
+    {{ article.article_slug }}
+
+    <div class="row">
+        {% if article.article_img %}
+            <div class="col-md-4">
+                <img src="/media/{{article.article_img}}" alt="{{ article.article_title }}" title="{{ article.article_title }}" width="100%">
+            </div>
+            <div class="col-md-8">
+        {% else %}
+            <div class="col">
+        {% endif %}
+            {{ article.article_content|range_filter_400|linebreaks }}<a class="text-decoration-none" href="">(read more)</a>
+            <h6>Posted by: <a class="text-decoration-none" href="#">@{{ article.teacher }}</a></h6>
+        </div>
+    </div>
+    <hr>
+{% endfor %}
+{% endblock body_block %}

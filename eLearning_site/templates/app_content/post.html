@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %}{{title}}{% endblock title_block %}
+
+{% block body_block %}
+<a href="#"
+    class="text-center mb-5 d-felx float-end text-decoration-none text-info display-6">{{user.username}}({{user.account_profile.account_type}})</a>
+    
+    <a href="{% url 'app_content:forumPost' %}" class="my-5 p-2 display-6 btn btn-outline-primary">Create a new forum post</a>
+<h1 class='text-center display-4 text-info py-5 my-5'>{{post.post_question}}</h1>
+
+{% if post.post_image %}
+    <img src="/media/{{post.post_image}}" width="100%">
+{% endif %}
+<p class="my-5">
+    {{post.post_desc|linebreaks}}
+</p>
+<div class="mt-5 mb-3">
+    Asked on: {{post.post_date}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Last updated: {{post.post_update_date}}
+</div>
+    <a class="text-decoration-none fs-4">Asked by: @{{post.author}}</a><hr><hr>
+
+<div class="my-5">
+    <div class="row">
+        {% if all_answers %}
+        <h3 class="text-center text-info">All Answers</h3>
+        <ul>
+            {% for answer in all_answers %}
+            <li>
+                <div class="mt-2 fs-5">answered by: <a href="#" class="text-decoration-none"><b>@{{answer.user}}</b></a></div>
+                <div class="mb-2">{{answer.answer_date}}</div>
+                <div class="mt-2 fs-5">{{answer.answer}}</div><hr class="mb-3">
+            </li>
+        {% endfor %}
+        </ul>
+        {% else %}
+        <h3 class="text-center text-info">No Answers Yet</h3>
+        {% endif %}
+    </div>
+    <div class="row">
+        <form method="POST">
+            {{form|crispy}}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary px-3">Answer as {{loggedInUser}}</button>
+        </form>
+    </div>
+</div>
+{% endblock body_block %}

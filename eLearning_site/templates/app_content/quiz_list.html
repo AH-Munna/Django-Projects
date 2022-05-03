@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load myFilters %}
+{% block title_block %}{{title}}{% endblock title_block %}
+
+{% block body_block %}
+<a href="#" class="text-center mb-5 d-felx float-end text-decoration-none text-info display-6">{{user.username}}({{user.account_profile.account_type}})</a>
+<h1 class='text-center display-4 text-info py-5 my-5'>All the Quizes list</h1>
+{% for quiz in quiz_list %}
+    <h3 class="mt-5">{{ quiz.quiz_title }}</h3>
+    Quiz Date: {{ quiz.quiz_date }}<br>
+    Total Marks: {{quiz.total_marks}}
+
+    <div class="mt-3">
+        {{ quiz.quiz_content|range_filter_400|linebreaks }}<a class="text-decoration-none" href="">(view quiz)</a>
+        <h6 class="my-3">Quiz Teacher: <a class="text-decoration-none" href="#">@{{ quiz.teacher }}</a></h6>
+    </div>
+    <hr>
+{% endfor %}
+{% endblock body_block %}

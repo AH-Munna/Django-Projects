@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load myFilters %}
+{% block title_block %}{{title}}{% endblock title_block %}
+
+{% block body_block %}
+<a href="#"
+    class="text-center mb-5 d-felx float-end text-decoration-none text-info display-6">{{user.username}}({{user.account_profile.account_type}})</a>
+    
+    <a href="{% url 'app_content:forumPost' %}" class="my-5 p-2 display-6 btn btn-outline-primary">Create a new forum post</a>
+<h1 class='text-center display-4 text-info py-5 my-5'>All Forum Posts</h1>
+
+<ul>
+    {% for post in forum_posts %}
+    <li>
+        <h3 class="mt-5">{{ post.post_question }}</h3>
+        asked on: {{ post.post_date }}
+
+        <div class="mt-3">
+            {% if post.post_desc %}
+            {{ post.post_desc|range_filter_400|linebreaks }}<a
+                class="text-decoration-none btn-outline-success py-2 px-3 rounded-pill" href="{% url 'app_content:post' pk=post.pk %}">answer post</a>
+            {% endif %}
+            <h6 class="my-3">asked by: <a class="text-decoration-none" href="#">@{{ post.author }}</a></h6>
+        </div>
+        <hr>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock body_block %}
