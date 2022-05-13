@@ -91,7 +91,7 @@ def completeView(request):
         bank_transaction_id = payment_data["bank_tran_id"]
 
         if payment_status == "VALID":
-            messages.success(request, f"Your payment complted successfully. You will be redirected to home in 5 seconds")
+            messages.success(request, f"Your payment completed successfully. You will be redirected to home in 5 seconds")
             validation_id = payment_data["val_id"]
             return HttpResponseRedirect(reverse("app_payment:purchase", kwargs={"val_id": validation_id, "tran_id": transaction_id}))
         elif payment_status == "FAILED":
