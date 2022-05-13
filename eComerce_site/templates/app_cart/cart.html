@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title_block %}{{title}}{% endblock title_block %}
+
+{% block body_block %}
+<div class="my-5">
+    <div class="my-5">
+      <h2>Your Cart</h2>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col" width="15%">#</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Quantity</th>
+          <td scope="col" align="right"><b>Price</b></th>
+          <th scope="col">Product Vendor</th>
+          <th scop="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cart in carts %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+
+          <td>{{cart.item.product_name}}</td>
+
+          <td>
+            <a class="mr-2" href="{% url 'app_cart:decrease' pk=cart.item.pk %}"><span class="badge badge-light"><i class="fas fa-minus text-dark fs-6 me-2"> </i></span></a>
+            {{ cart.quantity }}
+            <a class="mr-2" href="{% url 'app_cart:increase' pk=cart.item.pk %}"> <span class="badge badge-light"> <i class="fas fa-plus text-dark fs-6 ms-2"></i></span></a>
+          </td>
+
+          <td align="right">&#2547; {{cart.get_total}}</td>
+
+          <td>{{cart.item.product_vendor}}</td>
+
+          <td class="d-flex justify-content-center"><a href="{% url 'app_cart:remove' pk=cart.item.pk %}" class="btn btn-danger btn-sm d-felx float-end">Remove From Cart</a></td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <th scope="row"></th>
+          <td colspan="2">Total</td>
+          <td align="right">&#2547; {{order.get_totals | floatformat:2 }}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center mt-5 mb-2">
+      <span class="fs-5 ms-5">Gold Coupons: <b style="color: gold;">{{gold}}</b></span>
+      <span class="fs-5 mx-5">bronze Coupons: <b style="color: rgb(182, 146, 92);">{{bronze}}</b></span>
+    </div>
+
+    <div class="d-flex justify-content-center my-5">
+        <a href="{% url 'app_shop:home' %}" class="btn btn-outline-info me-4 px-3">Continue Shoping</a>
+        <a href="{% url 'app_payment:checkout' %}" class="btn btn-outline-success ms-4 px-3">Proceed To Checkout</a>
+    </div>
+</div>
+{% endblock body_block %}

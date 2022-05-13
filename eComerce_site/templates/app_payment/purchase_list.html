@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title_block %}{{title}}{% endblock title_block %}
+
+{% block body_block %}
+<div class="my-5">
+    <div class="my-5">
+      <h2 class="display-4 text-info text-center">Purchased Items</h2>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col" width="15%">#</th>
+          <th scope="col">Order ID</th>
+          <th scope="col">Products</th>
+          {% comment %} <td scope="col"><b>Price</b></th> {% endcomment %}
+          <th scop="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{order.orderId}}</td>
+          <td>
+            {% for item in order.orderitems.all %}{{item}}, {% endfor %}
+          </td>
+          <td>
+            <span class="badge bg-primary">Completed</span>
+          </td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-center my-5">
+        <a href="{% url 'app_shop:home' %}" class="btn btn-outline-info me-4 px-3">Start Shoping</a>
+    </div>
+</div>
+{% endblock body_block %}

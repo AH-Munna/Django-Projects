@@ -1,0 +1,95 @@
+.myBackground {
+  background-color: rgb(27, 26, 36);
+}
+.myNavBackground {
+  background-color: rgba(27, 26, 36, 0.7);
+}
+
+h1 {
+  color: red;
+}
+
+.faIcons {
+  font-size: 54px;
+  display: inline-block;
+  transition: transform .2s;
+}
+.faIcons:hover {
+  transform: scale(1.2);
+}
+
+.faIconsNav {
+  transition: transform .3s;
+}
+.faIconsNav:hover {
+  transform: scale(1.1);
+}
+
+body {
+  background-image: url("https://img.freepik.com/free-vector/white-elegant-texture-background-style_23-2148432200.jpg?w=2000");
+  background-size: cover;
+}
+
+p {
+  word-wrap: break-word;
+}
+
+/* table, tr, td{
+    border: 2px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+  } */
+.unselectable {
+  user-select: none;
+}
+
+#brand {
+  width: 50px;
+}
+
+.crop {
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.crop img {
+  margin: -15px 0px 0px -180px;
+}
+
+.allignRight{
+  margin: 0 0 0 auto;
+  display: block;
+  display: inline-block;
+}
+
+.gallary-wrap .img-big-wrap img{
+  height: 450px;
+  width: auto;
+  display: inline-block;
+  cursor: zoom-in;
+}
+
+.gallary-wrap .img-small-wrap .item-gallary{
+  width: 60px;
+  height: 60px;
+  border: 1px solid #ddd;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.gallary-wrap .img-small-wrap {
+  text-align: center;
+}
+
+.gallary-wrap .img-small-wrap img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: zoom-in;
+}
+
+.no-list-decoration {
+  list-style-type: none;
+}

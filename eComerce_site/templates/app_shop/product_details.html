@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title_block %}{{object.product_name}}{% endblock title_block %}
+{% block body_block %}
+<div class="container my-5">
+    <div class="card">
+        <div class="row">
+            <aside class="col-md-5 border-right">
+                <article class="gallery-wrap">
+                    <div class="img-big-wrap">
+                        <div>
+                            <a href="#"><img src="/media/{{object.product_image}}" style="width:450px"></a>
+                        </div>
+                    </div>
+                </article>
+            </aside>
+            <aside class="col-md-7">
+                <article class="card-body p-5">
+                    <h3 class="title mp-3">{{object.product_name}}</h3>
+                    <p class="price-detail-wrap">
+                        <span class="price h3 text-warning">
+                            <span class="currency">BDT &#2547;</span><span class="num">{{object.product_price}} </span>
+                            {% if not product.old_price == 0.00 %}
+                                <span><del> &#2547;{{product.old_price|floatformat:2}}</del></span>
+                            {% endif %}
+                        </span>
+                    </p>
+                    <dl class="item-property">
+                        <dt>Description</dt>
+                        <dd>
+                            <p>{{object.product_detial|linebreaks}}</p>
+                        </dd>
+                    </dl>
+
+                    <div class="d-flex justify-content-between">
+                        <div>
+                        <a href="{% url 'app_cart:add' pk=object.pk %}"
+                        class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add
+                        to Cart</a> </div>
+
+                        <div class="p-2">Vendor: <a class="text-decoration-none" href="{% url 'app_user:profile' %}">@<b>{{object.product_vendor.userProfile.username}}</b></a></div>
+                      </div>
+                    
+                </article>
+            </aside>
+        </div>
+    </div>
+</div>
+{% endblock body_block %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body_block %}
+<h2>Featured product</h2>
+<div class="row">
+    {% for product in object_list %}
+    <div class="col-md-6 col-sm-12 col-xl-4 col-xxl-3">
+        
+        <figure class="shadow p-2">
+            <div class="">
+                <img class="" src="/media/{{product.product_image}}" alt="product image" style="width: 300px; height: 337px; object-fit: cover;">
+            </div>
+            <figcaption>
+                <a class="text-decoration-none" href="{% url 'app_shop:productDetails' pk=product.pk %} "><h6 class="fs-5 text-center my-2">{{product.product_name}}</h6>
+                    <div class="mt-3 text-dark">
+                        <span>&#2547;{{product.product_price|floatformat:2}} </span>
+                        {% if not product.old_price == 0.00 %}
+                        <span> <del> &#2547;{{product.old_price|floatformat:2}}</del></span>
+                        {% endif %}
+                    </div>
+                </a>
+            </figcaption>
+        </figure>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock body_block %}
